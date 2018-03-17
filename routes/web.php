@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/register2','UserController@index');
+Route::POST('/kayit','UserController@kayit');
+
+
+//
+//
+// Route::get('/userLogin','UserController@userLogin');
+// Route::post('/userRegister','UserController@userRegister');
