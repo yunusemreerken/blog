@@ -22,8 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register2','UserController@index');
 Route::POST('/kayit','UserController@kayit');
 
+Route::get('giris','UserController@giris');
+Route::post('giris','UserController@signin');
 
-//
 //
 // Route::get('/userLogin','UserController@userLogin');
 // Route::post('/userRegister','UserController@userRegister');
