@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -25,6 +26,7 @@ Route::POST('/kayit','UserController@kayit');
 Route::get('giris','UserController@giris');
 Route::post('giris','UserController@signin');
 
+// Route::get('get','UserController@test');
 //
 // Route::get('/userLogin','UserController@userLogin');
 // Route::post('/userRegister','UserController@userRegister');

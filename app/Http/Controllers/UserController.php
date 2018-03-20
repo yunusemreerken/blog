@@ -1,45 +1,52 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use DB;
 use Hash;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Response;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 class UserController extends Controller
 {
+  public $successStatus = 200;
+  protected $name="";
   public function index()
   {
       return view('kayit');
   }
   public function kayit(Request $request)
   {
-      $name= $request->input('name');
+      $name=$request->input('name');
       $email=$request->input('email');
       $password = $request->input('password');
       $hashed = Hash::make($password);
       $kayit = DB::select("INSERT INTO kayit(name,email,password)VALUES(?,?,?)",[$name,$email,$hashed]);
-      // echo  $kayit;
       return response()->json([
-    'name' => $name,
-    'email' => $email,
-    'password' => $hashed
-]);
+          'name'=>$name,
+          'email' => $email,
+          'password' => $hashed
+      ],$this->successStatus);
   }
+
   public function giris()
   {
       return view('giris');
   }
+
   public function signin(Request $request)
   {
-      $name= $request->input('email');
-      $name= $request->input('password');
-      $veri = DB::select("select email,password from kayit");
-      foreach ($veri as $key) {
-          if ($veri->email==$name && Hash::check($veri->password, $password)) {
-            echo "sdasdasd";
-          }
+    $name=$request->input('name');
+    $email=$request->input('email');
+    $password = $request->input('password');
+    $query = DB::select("SELECT name,email,password FROM kayit WHERE email=?",[$email]);
+    foreach ($query as $sorgu) {
+      if ($sorgu->email==$email && Hash::check($password,$sorgu->password)) {
+          return response()->json(['name' => $sorgu->name],$this->successStatus);
       }
+      else{
+        return response()->json(['error'=>'Unauthorised']);
+      }
+    }
+    return response()->json(['error'=>'Unauthorised']);
   }
+
 }

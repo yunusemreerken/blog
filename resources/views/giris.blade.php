@@ -6,7 +6,7 @@
   </head>
   <body>
     <form class="" action="giris" method="post">
-      @csrf
+              {{ csrf_field() }}
       <label for="">email</label>
       <input type="email" name="email" value="">
       <label for="">Şifre</label>
