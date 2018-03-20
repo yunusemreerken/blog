@@ -2,9 +2,14 @@
 
 use DB;
 use Hash;
+<<<<<<< HEAD
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+=======
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Response;
+>>>>>>> master
 class UserController extends Controller
 {
   public $successStatus = 200;
@@ -31,6 +36,7 @@ class UserController extends Controller
   {
       return view('giris');
   }
+<<<<<<< HEAD
 
   public function signin(Request $request)
   {
@@ -49,4 +55,21 @@ class UserController extends Controller
     return response()->json(['error'=>'Unauthorised']);
   }
 
+=======
+  public function giris()
+  {
+      return view('giris');
+  }
+  public function signin(Request $request)
+  {
+      $name= $request->input('email');
+      $name= $request->input('password');
+      $veri = DB::select("select email,password from kayit");
+      foreach ($veri as $key) {
+          if ($veri->email==$name && Hash::check($veri->password, $password)) {
+            echo "sdasdasd";
+          }
+      }
+  }
+>>>>>>> master
 }

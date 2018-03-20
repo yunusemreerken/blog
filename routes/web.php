@@ -26,7 +26,10 @@ Route::POST('/kayit','UserController@kayit');
 Route::get('giris','UserController@giris');
 Route::post('giris','UserController@signin');
 
+<<<<<<< HEAD
 // Route::get('get','UserController@test');
+=======
+>>>>>>> master
 //
 // Route::get('/userLogin','UserController@userLogin');
 // Route::post('/userRegister','UserController@userRegister');
